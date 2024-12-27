@@ -1,16 +1,28 @@
-node {
-    stage('Build') {
-        echo 'Building the project...'
+pipeline{
+  agent any
+  stages{
+    stage('Build'){
+      step{
+        echo "Building"
+      }
     }
-    stage('Test') {
-        echo 'Running tests...'
+    stage('Test'){
+      step{
+        echo "Testing"
+      }
     }
-    stage('Deploy') {
-        echo 'Deploying the application...'
+    stage('Deploy'){
+      step{
+        echo "Deploying"
+      }
     }
-    if (currentBuild.result == 'SUCCESS') {
-        echo 'Build succeeded!'
-    } else {
-        echo 'Build failed.'
+  }
+  post{
+    success{
+      echo "Success"
     }
+    failure{
+      echo "failure"
+    }
+  }
 }
